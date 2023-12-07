@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste JS</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .inContainer table {
+      width: 100%;
+      text-align: center;
+      border-collapse: collapse;
+    }
+
+    .inContainer th,
+    .inContainer td {
+      border: 1px solid black;
+      padding: 3px;
+      width: 150px;
+    }
+
+    button {
+      display: flex;
+      margin-top: 5px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    h3 {
+      text-align: center;
+      margin: 2px;
+    }
+
+    #nIdade {
+      display: flex;
+      margin-left: auto;
+      margin-right: auto;
+      width: 40px;
+      text-align: center;
+      padding: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container" id="container">
+    <div class="inContainer" id="inContainer">
+      <table id="tabelaUsuarios">
+        <thead>
+          <tr>
+            <th id="nome">Nome</th>
+            <th id="idade">Idade</th>
+            <th id="pontos">Pontos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- As linhas de dados serão adicionadas aqui dinamicamente com JavaScript -->
+        </tbody>
+      </table>
+      <h3>Digita a idade</h3>
+      <input type="text" name="nIdade" id="nIdade">
+      <button class="btn_filtrar" onclick="aplicarFiltro()">APLICAR FILTRO IDADE</button>
+    </div>
+  </div>
+</body>
+<script src="script.js"></script>
+
+</html>
