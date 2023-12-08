@@ -1,3 +1,28 @@
+// Aqui ele faz um método filter de idade e retorna apenas os Nomes em String
+/*function filtrarPorIdade2(usuarios, idadeMinima, idadeMaxima) {
+  return usuarios
+    .filter(
+      (usuario) => usuario.idade >= idadeMinima && usuario.idade <= idadeMaxima
+    )
+    .map((usuario) => usuario.nome);
+}
+const idadeFiltrada2 = filtrarPorIdade2(usuarios, 25, 33);
+//console.log(idadeFiltrada2);
+//-----------------------------------------------------------------------
+*/
+
+/*function combinarFuncoes(filtrarPorIdade, ordenarPorPontos) {
+  return (usuarios, idadeMinima) => {
+    const idadeFiltrada3 = filtrarPorIdade(usuarios, idadeMinima);
+    return ordenarPorPontos(idadeFiltrada3);
+  };
+}
+const usuariosComMaisPontos = combinarFuncoes(
+  filtrarPorIdade,
+  ordenarPorPontos
+)(usuarios, 35);
+//console.log(usuariosComMaisPontos);
+//-----------------------------------------------------------------------*/
 /*const originalArray = [1, 2, 3];
 const modifiedArray = originalArray.map((num) => num * 2);
 
@@ -67,7 +92,6 @@ adicionarAoCarrinho(carrinhoDeCompras, {
   nome: "Livro",
   preco: 50,
 });
-
 const total = calcularTotal(carrinhoDeCompras);
 console.log(total); */
 
@@ -89,11 +113,19 @@ const usuarios = [
   { nome: "Patricia", idade: 38, pontos: 280 },
 ];
 
-document.addEventListener("DOMContentLoaded", function () {
-  // Obtém a referência da tabela
-  const tabelaUsuarios = document.getElementById("tabelaUsuarios");
+//console.log(usuarios.length);
 
+let tabelaUsuarios;
+
+document.addEventListener("DOMContentLoaded", function () {
+  tabelaUsuarios = document.getElementById("tabelaUsuarios");
+  preencherTabelaUsuarios();
+});
+
+function preencherTabelaUsuarios() {
   if (tabelaUsuarios) {
+    // ... restante do código
+
     // Obtém a referência do corpo da tabela
     const tbody = tabelaUsuarios.querySelector("tbody");
 
@@ -111,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     console.error("Elemento com ID 'tabelaUsuarios' não encontrado.");
   }
-});
+}
 
 // Aqui está uma função com método filter
 function filtrarPorIdade(usuarios, idadeMinima) {
@@ -130,31 +162,6 @@ const usuariosPorPontos = ordenarPorPontos(idadeFiltrada);
 //console.log(usuariosPorPontos);
 //-----------------------------------------------------------------------
 
-// Aqui ele faz um método filter de idade e retorna apenas os Nomes em String
-function filtrarPorIdade2(usuarios, idadeMinima, idadeMaxima) {
-  return usuarios
-    .filter(
-      (usuario) => usuario.idade >= idadeMinima && usuario.idade <= idadeMaxima
-    )
-    .map((usuario) => usuario.nome);
-}
-const idadeFiltrada2 = filtrarPorIdade2(usuarios, 25, 33);
-//console.log(idadeFiltrada2);
-//-----------------------------------------------------------------------
-
-/*function combinarFuncoes(filtrarPorIdade, ordenarPorPontos) {
-  return (usuarios, idadeMinima) => {
-    const idadeFiltrada3 = filtrarPorIdade(usuarios, idadeMinima);
-    return ordenarPorPontos(idadeFiltrada3);
-  };
-}
-const usuariosComMaisPontos = combinarFuncoes(
-  filtrarPorIdade,
-  ordenarPorPontos
-)(usuarios, 35);
-//console.log(usuariosComMaisPontos);
-//-----------------------------------------------------------------------*/
-
 // Sua função combinarFuncoes
 function combinarFuncoes(filtrarPorIdade, ordenarPorPontos) {
   return (usuarios, idadeMinima) => {
@@ -171,14 +178,12 @@ function aplicarFiltro() {
     ordenarPorPontos
   )(usuarios, idadeMinima);
 
-  // Limpa a tabela antes de adicionar os resultados
-  const tabelaUsuarios = document.getElementById("tabelaUsuarios");
-  const tbody = tabelaUsuarios.getElementsByTagName("tbody")[0];
-  tbody.innerHTML = "";
+  // Cria o novo HTML
+  const newTbody = document.createElement("tbody");
 
   // Adiciona os resultados na tabela
   usuariosFiltradosOrdenados.forEach((usuario) => {
-    const row = tbody.insertRow();
+    const row = newTbody.insertRow();
     const cellNome = row.insertCell(0);
     const cellIdade = row.insertCell(1);
     const cellPontos = row.insertCell(2);
@@ -187,4 +192,10 @@ function aplicarFiltro() {
     cellIdade.textContent = usuario.idade;
     cellPontos.textContent = usuario.pontos;
   });
+
+  // Substitui o HTML antigo pelo novo
+  tabelaUsuarios.replaceChild(
+    newTbody,
+    tabelaUsuarios.getElementsByTagName("tbody")[0]
+  );
 }
